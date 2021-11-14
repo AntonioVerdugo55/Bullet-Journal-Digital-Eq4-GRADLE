@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="fullCell" prefHeight="120.0" prefWidth="345.0" style="-fx-background-color: #a2e0ca" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox spacing="5" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
+        <ImageView fx:id="tareaSticker" style="-fx-pref-height: 100; -fx-pref-width: 100">
+            <Image url="@../Images/0.png"/>
+        </ImageView>
+        <VBox spacing="5">
+            <Label fx:id="tareaTitulo" prefHeight="20" style="-fx-font-size: 18; -fx-font-family: Algerian">Titulo</Label>
+            <Label fx:id="tareaDescripcion" prefHeight="60" wrapText="true">Si tuvieras fe si tuvieras fe como un granito de mostaza, eso dice el cñor Porque el cñor es bueno y rico</Label>
+            <Label fx:id="tareaFecha" prefHeight="20" style="-fx-font-size: 9">12/11/2021</Label>
+        </VBox>
+    </HBox>
+</AnchorPane>

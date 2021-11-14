@@ -1,0 +1,1 @@
+Aplicación de Bullet Journal que sí sirve ahora sí
