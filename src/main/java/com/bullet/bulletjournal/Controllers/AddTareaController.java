@@ -20,6 +20,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AddTareaController implements Initializable {
@@ -60,42 +61,53 @@ public class AddTareaController implements Initializable {
             });
     }
 
-   public void insertarTarea() throws IOException
+    public void insertarTarea() throws IOException
     {
-        Tarea tareado = new Tarea();
-        tareado.setId_tarea(0);
-        tareado.setCompletada(false);
-        tareado.setTarea(txtTitulo.getText());
-        tareado.setDescripcion(txtDescripcion.getText());
-
-        LocalDate localDate = dateFecha.getValue();
-        Date date = java.sql.Date.valueOf(localDate);
-        tareado.setFecha(date);
-
-        switch (cmbSticker.getSelectionModel().getSelectedItem().toString())
+        if(txtTitulo.getText().isEmpty())
         {
-            case "Nada":
-                tareado.setSticker(0);
-            break;
-            case "Warning":
-                tareado.setSticker(1);
-                break;
-            case "Pencil":
-                tareado.setSticker(2);
-                break;
-            case "Equis":
-                tareado.setSticker(3);
-                break;
-            case "Estrella":
-                tareado.setSticker(4);
-                break;
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText("Faltan datos obligatorios por llenar");
+            alert.setContentText("Asegúrate de llenar los campos obligatorios (*)");
+            alert.showAndWait();
         }
+        else
+        {
+            Tarea tareado = new Tarea();
+            tareado.setId_tarea(0);
+            tareado.setCompletada(false);
+            tareado.setTarea(txtTitulo.getText());
+            tareado.setDescripcion(txtDescripcion.getText());
 
-        String hex3 = Integer.toHexString(colorPicker.getValue().hashCode()).substring(0, 6).toUpperCase();
-        tareado.setColor(hex3);
+            LocalDate localDate = dateFecha.getValue();
+            Date date = java.sql.Date.valueOf(localDate);
+            tareado.setFecha(date);
 
-        TareDAO.insertTarea(tareado);
-        retornar();
+            switch (cmbSticker.getSelectionModel().getSelectedItem().toString())
+            {
+                case "Nada":
+                    tareado.setSticker(0);
+                    break;
+                case "Warning":
+                    tareado.setSticker(1);
+                    break;
+                case "Pencil":
+                    tareado.setSticker(2);
+                    break;
+                case "Equis":
+                    tareado.setSticker(3);
+                    break;
+                case "Estrella":
+                    tareado.setSticker(4);
+                    break;
+            }
+
+            String hex3 = Integer.toHexString(colorPicker.getValue().hashCode()).substring(0, 6).toUpperCase();
+            tareado.setColor(hex3);
+
+            TareDAO.insertTarea(tareado);
+            retornar();
+        }
     }
 
     public void retornar() throws IOException

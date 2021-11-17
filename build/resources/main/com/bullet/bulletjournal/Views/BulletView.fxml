@@ -10,25 +10,27 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 <AnchorPane prefWidth="600" prefHeight="550" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bullet.bulletjournal.Controllers.BulletController">
-    <AnchorPane id="wrappermain" prefWidth="600" prefHeight="550">
+    <AnchorPane id="wrappermain" prefWidth="600" prefHeight="550" style="-fx-background-color: #a2e0ca">
         <VBox AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="215" spacing="20" style="-fx-alignment: center">
-            <Label style="-fx-font-size: 24; -fx-font-family: 'Algerian';">BULLET JOURNAL</Label>
+            <Label style="-fx-font-size: 42; -fx-font-family: 'Algerian';">BULLET JOURNAL</Label>
             <VBox spacing="10">
                 <ListView fx:id="tablaTareas"/>
             </VBox>
         </VBox>
         <VBox spacing="15" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="400" AnchorPane.rightAnchor="10" style="-fx-alignment: center">
-            <HBox spacing="15" style="-fx-alignment: center">
-                <Button fx:id="btnMenos">
-                    -
-                </Button>
-                <Button fx:id="btnAgregar">
-                    +
-                </Button>
+            <VBox spacing="15" style="-fx-alignment: center">
+                <HBox style="-fx-alignment: center" spacing="10">
+                    <Button fx:id="btnMenos">
+                        Borrar
+                    </Button>
+                    <Button fx:id="btnAgregar">
+                        Agregar
+                    </Button>
+                </HBox>
                 <Button fx:id="btnComple">
                     Completado
                 </Button>
-            </HBox>
+            </VBox>
             <ListView fx:id="tablaTareasComple"/>
         </VBox>
     </AnchorPane>

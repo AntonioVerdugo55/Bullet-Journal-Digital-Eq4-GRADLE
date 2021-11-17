@@ -12,7 +12,7 @@
             prefHeight="400.0" prefWidth="500.0">
     <AnchorPane>
         <VBox alignment="CENTER" spacing="10">
-            <Label text="Titulo"/>
+            <Label text="Titulo*"/>
             <TextField fx:id="txtTitulo" prefWidth="500"/>
             <Label text="Descripcion"/>
             <TextArea fx:id="txtDescripcion"/>
