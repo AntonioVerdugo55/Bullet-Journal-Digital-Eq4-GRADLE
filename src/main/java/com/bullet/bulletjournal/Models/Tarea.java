@@ -11,6 +11,10 @@ public class Tarea {
     public int sticker;
     public String color;
 
+    public Tarea()
+    {
+    }
+
     public Tarea(int id_tarea, String tarea, String descripcion, Date fecha, boolean completada, int sticker, String color)
     {
         this.id_tarea = id_tarea;

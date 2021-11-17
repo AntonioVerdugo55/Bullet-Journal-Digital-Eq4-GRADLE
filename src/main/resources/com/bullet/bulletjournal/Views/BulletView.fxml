@@ -9,7 +9,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
-<AnchorPane prefWidth="500" prefHeight="750" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bullet.bulletjournal.Controllers.BulletController">
+<AnchorPane prefWidth="600" prefHeight="550" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bullet.bulletjournal.Controllers.BulletController">
     <AnchorPane id="wrappermain" prefWidth="600" prefHeight="550">
         <VBox AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="215" spacing="20" style="-fx-alignment: center">
             <Label style="-fx-font-size: 24; -fx-font-family: 'Algerian';">BULLET JOURNAL</Label>
@@ -22,14 +22,14 @@
                 <Button fx:id="btnMenos">
                     -
                 </Button>
-                <Button>
+                <Button fx:id="btnAgregar">
                     +
                 </Button>
                 <Button fx:id="btnComple">
                     Completado
                 </Button>
             </HBox>
-            <TableView fx:id="tablaTareasComple"/>
+            <ListView fx:id="tablaTareasComple"/>
         </VBox>
     </AnchorPane>
 </AnchorPane>
