@@ -4,10 +4,7 @@ import com.bullet.bulletjournal.Models.Tarea;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class TareasDAO {
 
@@ -38,6 +35,32 @@ public class TareasDAO {
             System.out.println("Oops! Something went wrong");
         }
         return response;
+    }
+
+    public void deleteTarea(int id)
+    {
+        try{
+            String query = "DELETE FROM tareas WHERE id_tarea="+id;
+            PreparedStatement st = conn.prepareStatement(query);
+            st.execute();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            System.out.println(":'u");
+        }
+    }
+    public void updateCompleTarea(int id)
+    {
+        int completado=1;
+        try{
+            String query = "UPDATE tareas SET completada = "+completado+" WHERE id_tarea = "+id;
+            PreparedStatement st = conn.prepareStatement(query);
+            st.execute();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            System.out.println(":'u");
+        }
     }
 }
 

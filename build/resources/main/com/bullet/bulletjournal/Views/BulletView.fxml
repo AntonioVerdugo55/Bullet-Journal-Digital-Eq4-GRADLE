@@ -19,17 +19,17 @@
         </VBox>
         <VBox spacing="15" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="400" AnchorPane.rightAnchor="10" style="-fx-alignment: center">
             <HBox spacing="15" style="-fx-alignment: center">
-                <Button>
+                <Button fx:id="btnMenos">
                     -
                 </Button>
                 <Button>
                     +
                 </Button>
-                <Button>
+                <Button fx:id="btnComple">
                     Completado
                 </Button>
             </HBox>
-            <TableView/>
+            <TableView fx:id="tablaTareasComple"/>
         </VBox>
     </AnchorPane>
 </AnchorPane>
