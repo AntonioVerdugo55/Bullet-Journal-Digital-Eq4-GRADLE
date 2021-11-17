@@ -7,9 +7,6 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.collections.FXCollections?>
-<?import org.kordamp.bootstrapfx.scene.layout.Panel?>
-<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
 <AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.bullet.bulletjournal.Controllers.AddTareaController"
             prefHeight="400.0" prefWidth="500.0">
