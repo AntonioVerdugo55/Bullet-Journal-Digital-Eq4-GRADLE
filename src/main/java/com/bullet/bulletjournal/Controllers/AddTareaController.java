@@ -4,23 +4,41 @@ import com.bullet.bulletjournal.DB.MySQL;
 import com.bullet.bulletjournal.DB.TareasDAO;
 import com.bullet.bulletjournal.HelloApplication;
 import com.bullet.bulletjournal.Models.Tarea;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AddTareaController implements Initializable {
 
     @FXML
     Button btnCancelar, btnAceptar;
+    @FXML
+    TextField txtTitulo;
+    @FXML
+    TextArea txtDescripcion;
+    @FXML
+    ComboBox cmbSticker;
+    @FXML
+    DatePicker dateFecha;
+    @FXML
+    ColorPicker colorPicker;
 
     TareasDAO TareDAO = new TareasDAO(MySQL.getConnection());
+    String colorHex;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,21 +60,45 @@ public class AddTareaController implements Initializable {
             });
     }
 
-
-    public void insertarTarea() throws IOException
+   public void insertarTarea() throws IOException
     {
         Tarea tareado = new Tarea();
         tareado.setId_tarea(0);
         tareado.setCompletada(false);
-        tareado.setTarea( /* Aqui pones el texto del textbox Tarea */);
-        tareado.setDescripcion(/* Aqui pones el texto del textfield Descripcion */);
-        tareado.setFecha(/* Aqui pones la fecha del Date Picker*/);
-        tareado.setSticker(/* Aqui pones el valor del combobox Sticker */);
-        tareado.setColor(/* Aqui pones el texto del textbox Color */);
+        tareado.setTarea(txtTitulo.getText());
+        tareado.setDescripcion(txtDescripcion.getText());
+
+        Date date = new Date();
+        Instant instant = date.toInstant();
+        LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+        Date date1 = java.sql.Date.valueOf(localDate);
+        tareado.setFecha(date1);
+
+        switch (cmbSticker.getSelectionModel().getSelectedItem().toString())
+        {
+            case "Nada":
+                tareado.setSticker(0);
+            break;
+            case "Warning":
+                tareado.setSticker(1);
+                break;
+            case "Pencil":
+                tareado.setSticker(2);
+                break;
+            case "Equis":
+                tareado.setSticker(3);
+                break;
+            case "Estrella":
+                tareado.setSticker(4);
+                break;
+        }
+
+        String hex3 = Integer.toHexString(colorPicker.getValue().hashCode()).substring(0, 6).toUpperCase();
+        tareado.setColor(hex3);
+
         TareDAO.insertTarea(tareado);
         retornar();
     }
-
 
     public void retornar() throws IOException
     {
@@ -68,4 +110,5 @@ public class AddTareaController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
 }

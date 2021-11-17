@@ -85,6 +85,7 @@ public class BulletController implements Initializable {
     }
 
     public void CompleteTarea() {
+        TareaSelected();
         TareDAO.updateCompleTarea(id);
         refreshTable();
     }
@@ -100,7 +101,7 @@ public class BulletController implements Initializable {
     {
         Stage stage = (Stage) btnMenos.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Views/AddTareaView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
         stage.setResizable(false);
         stage.setTitle("Agregar Tarea");
         stage.setScene(scene);

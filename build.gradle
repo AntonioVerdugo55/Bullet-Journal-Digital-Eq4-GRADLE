@@ -30,6 +30,16 @@ javafx {
 
 dependencies {
     implementation 'mysql:mysql-connector-java:8.0.15'
+    implementation 'org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0'
+    compile 'de.jensd:fontawesomefx-commons:9.0.0'
+    compile 'de.jensd:fontawesomefx-controls:9.0.0'
+    compile 'de.jensd:fontawesomefx-emojione:3.1.1-9'
+    compile 'de.jensd:fontawesomefx-fontawesome:4.7.0-9'
+    compile 'de.jensd:fontawesomefx-icons525:4.2.0-9'
+    compile 'de.jensd:fontawesomefx-materialdesignfont:2.0.26-9'
+    compile 'de.jensd:fontawesomefx-materialicons:2.2.0-9'
+    compile 'de.jensd:fontawesomefx-octicons:4.3.0-9'
+    compile 'de.jensd:fontawesomefx-weathericons:2.0.10-9'
 }
 
 test {
