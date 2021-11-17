@@ -1,5 +1,6 @@
 package com.bullet.bulletjournal.Models;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Tarea {
@@ -15,8 +16,11 @@ public class Tarea {
     {
     }
 
+
+
     public Tarea(int id_tarea, String tarea, String descripcion, Date fecha, boolean completada, int sticker, String color)
     {
+
         this.id_tarea = id_tarea;
         this.tarea = tarea;
         this.descripcion = descripcion;
@@ -24,7 +28,10 @@ public class Tarea {
         this.completada = completada;
         this.sticker = sticker;
         this.color = color;
+
     }
+
+
 
     public int getId_tarea() {
         return id_tarea;

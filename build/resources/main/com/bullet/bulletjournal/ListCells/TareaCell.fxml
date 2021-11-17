@@ -10,12 +10,7 @@
             <Image url="@../Images/0.png"/>
         </ImageView>
         <VBox spacing="5">
-            <HBox spacing="10">
                 <Label fx:id="tareaTitulo" prefHeight="24" style="-fx-font-size: 18; -fx-font-family: Algerian">Titulo</Label>
-                <ImageView fx:id="paloma" style="-fx-pref-height: 24; -fx-pref-width: 24">
-                    <Image url="@../Images/vacio.png"/>
-                </ImageView>
-            </HBox>
                 <Label fx:id="tareaDescripcion" prefHeight="60" wrapText="true">Si tuvieras fe si tuvieras fe como un granito de mostaza, eso dice el cñor Porque el cñor es bueno y rico</Label>
                 <Label fx:id="tareaFecha" prefHeight="20" style="-fx-font-size: 9">12/11/2021</Label>
         </VBox>

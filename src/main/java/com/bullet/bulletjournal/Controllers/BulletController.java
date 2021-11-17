@@ -58,8 +58,8 @@ public class BulletController implements Initializable {
         @Override
         public void handle(ActionEvent event) {
             alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText("Vas a borrar prro");
-            alert.setContentText("Tas seguro?");
+            alert.setHeaderText("Borraras una tarea permanentemente");
+            alert.setContentText("¿Estas seguro?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
                 TareaSelected();

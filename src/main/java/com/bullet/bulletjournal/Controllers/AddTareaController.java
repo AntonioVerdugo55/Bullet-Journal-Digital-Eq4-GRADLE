@@ -68,11 +68,9 @@ public class AddTareaController implements Initializable {
         tareado.setTarea(txtTitulo.getText());
         tareado.setDescripcion(txtDescripcion.getText());
 
-        Date date = new Date();
-        Instant instant = date.toInstant();
-        LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
-        Date date1 = java.sql.Date.valueOf(localDate);
-        tareado.setFecha(date1);
+        LocalDate localDate = dateFecha.getValue();
+        Date date = java.sql.Date.valueOf(localDate);
+        tareado.setFecha(date);
 
         switch (cmbSticker.getSelectionModel().getSelectedItem().toString())
         {

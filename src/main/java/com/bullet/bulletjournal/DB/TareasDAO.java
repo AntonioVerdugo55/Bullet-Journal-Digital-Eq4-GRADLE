@@ -26,7 +26,7 @@ public class TareasDAO {
             while(rs.next())
             {
                 quitapon = new Tarea(rs.getInt("id_tarea"), rs.getString("tarea"), rs.getString("descripcion"),
-                                    rs.getDate("fecha"), rs.getBoolean("completada"), rs.getInt("sticker"), rs.getString("color"));
+                         rs.getDate("fecha"), rs.getBoolean("completada"), rs.getInt("sticker"), rs.getString("color"));
                 response.add(quitapon);
             }
         }
