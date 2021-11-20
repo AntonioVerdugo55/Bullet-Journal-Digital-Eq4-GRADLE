@@ -37,6 +37,27 @@ public class TareasDAO {
         }
         return response;
     }
+    public Tarea fetchTareasWithId(int id)
+    {
+        Tarea quitapon=new Tarea();
+        try{
+            String query = "SELECT * FROM tareas where id_tarea = "+id+";";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while(rs.next())
+            {
+                quitapon = new Tarea(rs.getInt("id_tarea"), rs.getString("tarea"), rs.getString("descripcion"),
+                        rs.getDate("fecha"), rs.getBoolean("completada"), rs.getInt("sticker"), rs.getString("color"));
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            System.out.println("Oops! Something went wrong");
+        }
+        return quitapon;
+    }
 
     public ObservableList<String> fetchCompletadas()
     {
@@ -97,6 +118,24 @@ public class TareasDAO {
             String query = "UPDATE tareas SET completada = true WHERE id_tarea = ?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, id);
+            st.execute();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            System.out.println(":'u");
+        }
+    }
+    public void updateTarea(int id, String titulo, String descripcion, Date fecha, Integer sticker, String color)
+    {
+        try{
+            String query = "UPDATE tareas SET tarea= ?,descripcion=?,fecha=?,sticker=?,color=? WHERE id_tarea = ?";
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1,titulo);
+            st.setString(2,descripcion);
+            st.setDate(3,fecha);
+            st.setInt(4,sticker);
+            st.setString(5,color);
+            st.setInt(6, id);
             st.execute();
         }
         catch (SQLException e){

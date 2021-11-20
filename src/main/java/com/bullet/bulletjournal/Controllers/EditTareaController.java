@@ -4,8 +4,7 @@ import com.bullet.bulletjournal.DB.MySQL;
 import com.bullet.bulletjournal.DB.TareasDAO;
 import com.bullet.bulletjournal.HelloApplication;
 import com.bullet.bulletjournal.Models.Tarea;
-import javafx.event.Event;
-import javafx.event.EventHandler;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,15 +14,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URL;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class AddTareaController implements Initializable {
+public class EditTareaController implements Initializable {
 
     @FXML
     Button btnCancelar, btnAceptar;
@@ -39,26 +36,70 @@ public class AddTareaController implements Initializable {
     ColorPicker colorPicker;
 
     TareasDAO TareDAO = new TareasDAO(MySQL.getConnection());
-
+    String colorHex;
+    Tarea tarea=new Tarea();
+    int ident;
+    String dir="src/datoweon/wea.dat";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-            btnAceptar.setOnAction(e -> {
-                try {
-                    insertarTarea();
-                }
-                catch (IOException ex) {
-                    ex.printStackTrace();
-                    System.out.println("Mori");
-                }
-            });
-            btnCancelar.setOnAction(e -> {
-                try {
-                    retornar();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            });
+        try {
+            ident = controllers.EasyBufferInt.readLine(dir);
+        } catch (IOException o) {
+            o.printStackTrace();
+        }
+        btnAceptar.setOnAction(e -> {
+
+            try {
+                insertarTarea();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                System.out.println("Mori");
+            }
+        });
+        btnCancelar.setOnAction(e -> {
+            try {
+                retornar();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        try {
+            insertarDatos();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void insertarDatos() throws IOException
+    {
+        Tarea tarea=TareDAO.fetchTareasWithId(ident);
+        txtTitulo.setText(tarea.getTarea());
+        txtDescripcion.setText(tarea.getDescripcion());
+
+        Date date;
+        date=tarea.getFecha();
+        dateFecha.setValue(java.sql.Date.valueOf(String.valueOf(date)).toLocalDate());
+
+        switch (tarea.getSticker())
+        {
+            case 0:
+                cmbSticker.setValue("Nada");
+                break;
+            case 1:
+                cmbSticker.setValue("Warning");
+                break;
+            case 2:
+                cmbSticker.setValue("Pencil");
+                break;
+            case 3:
+                cmbSticker.setValue("Equis");
+                break;
+            case 4:
+                cmbSticker.setValue("Estrella");
+                break;
+        }
+        Color c = Color.web(tarea.getColor(),1.0);
+        colorPicker.setValue(c);
     }
 
     public void insertarTarea() throws IOException
@@ -80,8 +121,9 @@ public class AddTareaController implements Initializable {
             tareado.setDescripcion(txtDescripcion.getText());
 
             LocalDate localDate = dateFecha.getValue();
-            Date date = java.sql.Date.valueOf(localDate);
-            tareado.setFecha(date);
+            Date date1 = java.sql.Date.valueOf(localDate);
+            tareado.setFecha(date1);
+            java.sql.Date sqlDate = new java.sql.Date(tareado.getFecha().getTime());
 
             switch (cmbSticker.getSelectionModel().getSelectedItem().toString())
             {
@@ -105,7 +147,7 @@ public class AddTareaController implements Initializable {
             String hex3 = Integer.toHexString(colorPicker.getValue().hashCode()).substring(0, 6).toUpperCase();
             tareado.setColor(hex3);
 
-            TareDAO.insertTarea(tareado);
+            TareDAO.updateTarea(ident,tareado.getTarea(),tareado.getDescripcion(),sqlDate,tareado.getSticker(),tareado.getColor());
             retornar();
         }
     }

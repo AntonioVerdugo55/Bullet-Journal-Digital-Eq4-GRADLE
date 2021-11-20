@@ -28,12 +28,13 @@ public class BulletController implements Initializable {
     ListView<String> tablaTareasComple;
 
     @FXML
-    Button btnMenos,btnComple, btnAgregar;
+    Button btnMenos,btnComple, btnAgregar, btnEdit;
 
     int id;
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     TareasDAO TareDAO = new TareasDAO(MySQL.getConnection());
-
+    String dir="src/datoweon/wea.dat";
+    public int identificador;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Tarea> tareas;
@@ -45,6 +46,13 @@ public class BulletController implements Initializable {
         tablaTareas.setCellFactory(TareaListView -> new TareaCell());
         btnMenos.setOnAction(handlerBorrar);
         btnComple.setOnAction(e -> CompleteTarea());
+        btnEdit.setOnAction(e -> {
+            try {
+                editarTarea();
+            } catch (IOException exe) {
+                exe.printStackTrace();
+            }
+        });
         btnAgregar.setOnAction(e -> {
             try {
                 agregarTarea();
@@ -70,11 +78,13 @@ public class BulletController implements Initializable {
         }
     };
 
+
     public void TareaSelected() {
         if(tablaTareas.getSelectionModel().getSelectedItem() != null)
         {
             Tarea srv = tablaTareas.getSelectionModel().getSelectedItem();
             id=srv.getId_tarea();
+            identificador=id;
         }
     }
 
@@ -104,6 +114,19 @@ public class BulletController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
         stage.setResizable(false);
         stage.setTitle("Agregar Tarea");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void editarTarea() throws IOException
+    {
+        TareaSelected();
+        controllers.EasyBufferInt.writeLine(dir,identificador);
+        Stage stage = (Stage) btnMenos.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Views/EditTareaView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+        stage.setResizable(false);
+        stage.setTitle("Editar Tarea");
         stage.setScene(scene);
         stage.show();
     }

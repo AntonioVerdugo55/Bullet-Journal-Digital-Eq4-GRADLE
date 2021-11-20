@@ -20,6 +20,11 @@
         <VBox spacing="15" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="400" AnchorPane.rightAnchor="10" style="-fx-alignment: center">
             <VBox spacing="15" style="-fx-alignment: center">
                 <HBox style="-fx-alignment: center" spacing="10">
+                    <Button fx:id="btnEdit">
+                        Editar
+                    </Button>
+                </HBox>
+                <HBox style="-fx-alignment: center" spacing="10">
                     <Button fx:id="btnMenos">
                         Borrar
                     </Button>
