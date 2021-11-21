@@ -1,0 +1,43 @@
+.Titulo {
+    -fx-text-fill: #aaff5b;
+    -fx-background-color: #305e00;
+    -fx-background-radius: 10 10 10 10;
+}
+
+.pane { -fx-background-image:url("../Images/marco.png") ;
+    -fx-background-repeat: no-repeat;
+-fx-background-size: stretch}
+
+Button { -fx-background-color: #305e00;
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 2;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Times New Roman";
+    -fx-font-style: italic;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 5 5 5 5;
+}
+
+Button:hover { -fx-background-color: #333333;
+    -fx-font-size: 18px;
+}
+
+Button:pressed { -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+}
+.list-view
+{
+    -fx-border-color: #305e00;
+    -fx-border-width: 2;
+}
+.Texto { -fx-font-family: "Cooper Black";
+    -fx-font-style: italic;
+    -fx-font-size: 20px;
+    -fx-text-fill: #aaff5b;
+    -fx-background-color: #305e00;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+    -fx-background-size: 10;
+}

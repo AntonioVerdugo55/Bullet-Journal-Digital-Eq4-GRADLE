@@ -1,0 +1,63 @@
+#titulo { -fx-font-family: "Hervetica";
+    -fx-font-style: italic;
+    -fx-font-size: 36px;
+    -fx-text-fill: #FFFFFF;
+}
+
+Label { -fx-font-family: "Cooper Black";
+    -fx-font-style: italic;
+    -fx-font-size: 20px;
+    -fx-text-fill: #aaff5b;
+    -fx-background-color: #305e00;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+    -fx-background-size: 10;
+}
+
+.pane
+{
+    -fx-background-image:url("../Images/marco.png") ;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: stretch
+}
+
+Button { -fx-background-color: #305e00;
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 2;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Times New Roman";
+    -fx-font-style: italic;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 5 5 5 5;
+}
+
+#autor { -fx-font-family: "Hervetica";
+    -fx-text-fill: #FFFF00;
+    -fx-font-size: 12px;
+}
+
+Button:hover { -fx-background-color: #333333;
+    -fx-font-size: 18px;
+}
+
+Button:pressed { -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+}
+.text-field {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+    -fx-border-color: #305e00;
+    -fx-border-width: 2;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+}
+.text-area {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+    -fx-border-color: #305e00;
+    -fx-border-width: 2;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+}

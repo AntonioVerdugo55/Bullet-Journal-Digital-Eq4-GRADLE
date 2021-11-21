@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -37,6 +38,9 @@ public class BulletController implements Initializable {
     public int identificador;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        btnMenos.setDisable(true);
+        btnEdit.setDisable(true);
+        btnComple.setDisable(true);
         ObservableList<Tarea> tareas;
         ObservableList<String> completadas;
         tareas = TareDAO.fetchTareas();
@@ -46,6 +50,21 @@ public class BulletController implements Initializable {
         tablaTareas.setCellFactory(TareaListView -> new TareaCell());
         btnMenos.setOnAction(handlerBorrar);
         btnComple.setOnAction(e -> CompleteTarea());
+        tablaTareas.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                TareaSelected();
+            }
+        });
+
+        tablaTareasComple.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                btnMenos.setDisable(true);
+                btnEdit.setDisable(true);
+                btnComple.setDisable(true);
+            }
+        });
         btnEdit.setOnAction(e -> {
             try {
                 editarTarea();
@@ -82,6 +101,9 @@ public class BulletController implements Initializable {
     public void TareaSelected() {
         if(tablaTareas.getSelectionModel().getSelectedItem() != null)
         {
+            btnMenos.setDisable(false);
+            btnEdit.setDisable(false);
+            btnComple.setDisable(false);
             Tarea srv = tablaTareas.getSelectionModel().getSelectedItem();
             id=srv.getId_tarea();
             identificador=id;
@@ -111,7 +133,7 @@ public class BulletController implements Initializable {
     {
         Stage stage = (Stage) btnMenos.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Views/AddTareaView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 550);
         stage.setResizable(false);
         stage.setTitle("Agregar Tarea");
         stage.setScene(scene);
@@ -124,7 +146,7 @@ public class BulletController implements Initializable {
         controllers.EasyBufferInt.writeLine(dir,identificador);
         Stage stage = (Stage) btnMenos.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Views/EditTareaView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 550);
         stage.setResizable(false);
         stage.setTitle("Editar Tarea");
         stage.setScene(scene);
