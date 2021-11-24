@@ -29,7 +29,7 @@ public class EditTareaController implements Initializable {
     @FXML
     TextArea txtDescripcion;
     @FXML
-    ComboBox cmbSticker;
+    ComboBox cmbSticker,cmbFiltro;
     @FXML
     DatePicker dateFecha;
     @FXML
@@ -98,6 +98,23 @@ public class EditTareaController implements Initializable {
                 cmbSticker.setValue("Estrella");
                 break;
         }
+
+        switch (tarea.getId_categoria())
+        {
+            case 1:
+                cmbFiltro.setValue("Tarea");
+                break;
+            case 2:
+                cmbFiltro.setValue("Evento");
+                break;
+            case 3:
+                cmbFiltro.setValue("Nota");
+                break;
+            case 4:
+                cmbFiltro.setValue("Urgente");
+                break;
+        }
+
         Color c = Color.web(tarea.getColor(),1.0);
         colorPicker.setValue(c);
     }
@@ -144,10 +161,25 @@ public class EditTareaController implements Initializable {
                     break;
             }
 
+            switch (cmbFiltro.getSelectionModel().getSelectedItem().toString()) {
+                case "Tarea":
+                    tareado.setId_categoria(1);
+                    break;
+                case "Evento":
+                    tareado.setId_categoria(2);
+                    break;
+                case "Nota":
+                    tareado.setId_categoria(3);
+                    break;
+                case "Urgente":
+                    tareado.setId_categoria(4);
+                    break;
+            }
+
             String hex3 = Integer.toHexString(colorPicker.getValue().hashCode()).substring(0, 6).toUpperCase();
             tareado.setColor(hex3);
 
-            TareDAO.updateTarea(ident,tareado.getTarea(),tareado.getDescripcion(),sqlDate,tareado.getSticker(),tareado.getColor());
+            TareDAO.updateTarea(ident,tareado.getTarea(),tareado.getDescripcion(),sqlDate,tareado.getSticker(),tareado.getColor(),tareado.getId_categoria());
             retornar();
         }
     }

@@ -10,11 +10,11 @@ public class Tarea {
     public boolean completada;
     public int sticker;
     public String color;
+    public int id_categoria;
 
     public Tarea(){}
 
-    public Tarea(int id_tarea, String tarea, String descripcion, Date fecha, boolean completada, int sticker, String color)
-    {
+    public Tarea(int id_tarea, String tarea, String descripcion, Date fecha, boolean completada, int sticker, String color, int id_categoria) {
         this.id_tarea = id_tarea;
         this.tarea = tarea;
         this.descripcion = descripcion;
@@ -22,6 +22,7 @@ public class Tarea {
         this.completada = completada;
         this.sticker = sticker;
         this.color = color;
+        this.id_categoria = id_categoria;
     }
 
     public int getId_tarea() {
@@ -78,5 +79,13 @@ public class Tarea {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public int getId_categoria() {
+        return id_categoria;
+    }
+
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
     }
 }

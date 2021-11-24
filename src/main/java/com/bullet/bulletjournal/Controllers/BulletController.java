@@ -29,7 +29,10 @@ public class BulletController implements Initializable {
     ListView<String> tablaTareasComple;
 
     @FXML
-    Button btnMenos,btnComple, btnAgregar, btnEdit;
+    Button btnMenos,btnComple, btnAgregar, btnEdit,btnFiltro;
+
+    @FXML
+            ComboBox cmbFiltro;
 
     int id;
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -41,12 +44,17 @@ public class BulletController implements Initializable {
         btnMenos.setDisable(true);
         btnEdit.setDisable(true);
         btnComple.setDisable(true);
+
         ObservableList<Tarea> tareas;
-        ObservableList<String> completadas;
         tareas = TareDAO.fetchTareas();
-        completadas = TareDAO.fetchCompletadas();
         tablaTareas.setItems(tareas);
+
+        ObservableList<String> completadas;
+        completadas = TareDAO.fetchCompletadas();
         tablaTareasComple.setItems(completadas);
+
+        cmbFiltro.setValue("Todos");
+
         tablaTareas.setCellFactory(TareaListView -> new TareaCell());
         btnMenos.setOnAction(handlerBorrar);
         btnComple.setOnAction(e -> CompleteTarea());
@@ -79,6 +87,9 @@ public class BulletController implements Initializable {
                 ex.printStackTrace();
             }
         });
+        btnFiltro.setOnAction(e -> {
+            TablaFiltro();
+        });
     }
 
     EventHandler<ActionEvent> handlerBorrar = new EventHandler<ActionEvent>() {
@@ -97,6 +108,33 @@ public class BulletController implements Initializable {
         }
     };
 
+    public void TablaFiltro()
+    {
+        ObservableList<Tarea> tareas;
+
+        switch (cmbFiltro.getSelectionModel().getSelectedItem().toString()) {
+            case "Todos":
+                tareas = TareDAO.fetchTareas();
+                tablaTareas.setItems(tareas);
+                break;
+            case "Tarea":
+                tareas = TareDAO.fetchTareasCat(1);
+                tablaTareas.setItems(tareas);
+                break;
+            case "Evento":
+                tareas = TareDAO.fetchTareasCat(2);
+                tablaTareas.setItems(tareas);
+                break;
+            case "Nota":
+                tareas = TareDAO.fetchTareasCat(3);
+                tablaTareas.setItems(tareas);
+                break;
+            case "Urgente":
+                tareas = TareDAO.fetchTareasCat(4);
+                tablaTareas.setItems(tareas);
+                break;
+        }
+    }
 
     public void TareaSelected() {
         if(tablaTareas.getSelectionModel().getSelectedItem() != null)
@@ -133,7 +171,7 @@ public class BulletController implements Initializable {
     {
         Stage stage = (Stage) btnMenos.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Views/AddTareaView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 550);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 590);
         stage.setResizable(false);
         stage.setTitle("Agregar Tarea");
         stage.setScene(scene);
@@ -146,7 +184,7 @@ public class BulletController implements Initializable {
         controllers.EasyBufferInt.writeLine(dir,identificador);
         Stage stage = (Stage) btnMenos.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Views/EditTareaView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 550);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 590);
         stage.setResizable(false);
         stage.setTitle("Editar Tarea");
         stage.setScene(scene);

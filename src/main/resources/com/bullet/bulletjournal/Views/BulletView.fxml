@@ -14,17 +14,20 @@
                 <Label styleClass="Texto">
                     Categorias
                 </Label>
-                <ComboBox>
+                <ComboBox fx:id="cmbFiltro">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Todos"/>
-                            <String fx:value="Warning"/>
-                            <String fx:value="Pencil"/>
-                            <String fx:value="Equis"/>
-                            <String fx:value="Estrella"/>
+                            <String fx:value="Tarea"/>
+                            <String fx:value="Evento"/>
+                            <String fx:value="Nota"/>
+                            <String fx:value="Urgente"/>
                         </FXCollections>
                     </items>
                 </ComboBox>
+                <Button fx:id="btnFiltro">
+                    Filtrar
+                </Button>
             </HBox>
             <VBox spacing="10">
                 <ListView  styleClass="list-view" fx:id="tablaTareas" />

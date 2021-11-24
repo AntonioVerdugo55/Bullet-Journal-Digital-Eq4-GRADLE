@@ -11,10 +11,10 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.bullet.bulletjournal.Controllers.EditTareaController"
-            prefHeight="550.0" prefWidth="500.0"
+            prefHeight="590.0" prefWidth="500.0"
             stylesheets="/com/bullet/bulletjournal/Estilos/estilo3.css"
             styleClass="pane">
-        <VBox alignment="CENTER" spacing="5" prefHeight="550.0" prefWidth="500.0">
+        <VBox alignment="CENTER" spacing="5" prefHeight="590.0" prefWidth="500.0">
             <Label text="Titulo*"/>
             <TextField fx:id="txtTitulo" maxWidth="300"/>
             <Label text="Descripcion"/>
@@ -30,6 +30,17 @@
                         <String fx:value="Pencil"/>
                         <String fx:value="Equis"/>
                         <String fx:value="Estrella"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <Label text="Categoria" />
+            <ComboBox fx:id="cmbFiltro">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Tarea"/>
+                        <String fx:value="Evento"/>
+                        <String fx:value="Nota"/>
+                        <String fx:value="Urgente"/>
                     </FXCollections>
                 </items>
             </ComboBox>

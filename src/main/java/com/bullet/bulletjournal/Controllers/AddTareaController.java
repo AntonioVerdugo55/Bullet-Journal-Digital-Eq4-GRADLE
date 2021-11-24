@@ -32,7 +32,7 @@ public class AddTareaController implements Initializable {
     @FXML
     TextArea txtDescripcion;
     @FXML
-    ComboBox cmbSticker;
+    ComboBox cmbSticker,cmbFiltro;
     @FXML
     DatePicker dateFecha;
     @FXML
@@ -99,6 +99,21 @@ public class AddTareaController implements Initializable {
                     break;
                 case "Estrella":
                     tareado.setSticker(4);
+                    break;
+            }
+
+            switch (cmbFiltro.getSelectionModel().getSelectedItem().toString()) {
+                case "Tarea":
+                    tareado.setId_categoria(1);
+                    break;
+                case "Evento":
+                    tareado.setId_categoria(2);
+                    break;
+                case "Nota":
+                    tareado.setId_categoria(3);
+                    break;
+                case "Urgente":
+                    tareado.setId_categoria(4);
                     break;
             }
 
