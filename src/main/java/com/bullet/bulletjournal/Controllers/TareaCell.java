@@ -18,7 +18,7 @@ public class TareaCell extends ListCell<Tarea> {
     @FXML
     ImageView tareaSticker;
     @FXML
-    Label tareaTitulo, tareaDescripcion, tareaFecha;
+    Label tareaTitulo, tareaDescripcion, tareaFecha, tareaCategoria;
     FXMLLoader mLLoader;
     @Override
     protected void updateItem(Tarea tarea, boolean empty){
@@ -44,6 +44,13 @@ public class TareaCell extends ListCell<Tarea> {
             tareaTitulo.setText(tarea.getTarea());
             tareaDescripcion.setText(tarea.getDescripcion());
             tareaFecha.setText(tarea.getFecha().toString());
+            switch (tarea.getId_categoria()) {
+                case 1 -> tareaCategoria.setText("Tarea");
+                case 2 -> tareaCategoria.setText("Evento");
+                case 3 -> tareaCategoria.setText("Nota");
+                case 4 -> tareaCategoria.setText("Urgente");
+                default -> tareaCategoria.setText("e");
+            }
             setText(null);
             setGraphic(fullCell);
         }
